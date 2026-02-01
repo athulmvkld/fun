@@ -1,27 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Surprise 😄</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial;
-      background: #111;
-      color: #0f0;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Important Questions ❤️</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #b14a6f, #ff8ccf);
+    font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: env(safe-area-inset-top)
+             env(safe-area-inset-right)
+             env(safe-area-inset-bottom)
+             env(safe-area-inset-left);
+  }
+
+  .box {
+    width: 92vw;
+    max-width: 380px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 16px;
+  }
+
+  .buttons {
+    position: relative;
+    height: 64px;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+  }
+
+  .yes {
+    background: #00ff9c;
+    color: #000;
+    position: absolute;
+    left: 0;
+  }
+
+  .no {
+    background: #ff3b3b;
+    color: #fff;
+    position: absolute;
+    right: 0;
+  }
+</style>
 </head>
+
 <body>
-  <div>
-    <h1>😂 Gotcha!</h1>
-    <p>You actually clicked this link.</p>
-    <button onclick="alert('Now go back to work 😜')">
-      Click me
-    </button>
+
+<div class="box">
+  <h2 id="question">Do you love me? ❤️</h2>
+  <img id="funnyImg"
+       src="https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif">
+
+  <div class="buttons">
+    <button class="yes" onclick="nextQuestion()">YES 😘</button>
+    <button class="no" id="noBtn">NO 🙄</button>
   </div>
+</div>
+
+<script>
+  const questions = [
+    { q: "Do you feel safe and happy with me? ❤️", img: "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif" },
+    { q: "Can you imagine growing old with me? 🥹", img: "https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif" },
+    { q: "Am I your comfort person? 🤍", img: "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" },
+    { q: "Do I make your bad days better? 🌈", img: "https://media.giphy.com/media/26xBIygOcC3bAWg7S/giphy.gif" },
+    { q: "Will you choose me every day? 💍", img: "https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" },
+
+    { q: "Am I cuter than your phone? 😌", img: "https://media.giphy.com/media/xUA7aM09ByyR1w5YWc/giphy.gif" },
+    { q: "Would you love me if I eat your snacks? 🍫😂", img: "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" },
+    { q: "Am I annoying… but cute? 😏", img: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" },
+    { q: "Do I talk more than Google? 🤓", img: "https://media.giphy.com/media/26Fxy3Iz1ari8oytO/giphy.gif" },
+    { q: "Am I your favorite distraction? 😜", img: "https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif" },
+
+    { q: "Do I give you butterflies… and more? 😏🔥", img: "https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif" },
+    { q: "Do I look extra hot when I tease you? 😘", img: "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif" },
+    { q: "Do I turn you on without trying? 🔥", img: "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif" },
+    { q: "Do you enjoy when I drive you crazy? 😈", img: "https://media.giphy.com/media/l0MYyda8kKQ7G9v2w/giphy.gif" },
+    { q: "Are you officially addicted to me? 😏💋", img: "images/1741524163824.jpg"  }
+  ];
+
+  let index = 0;
+  const qEl = document.getElementById("question");
+  const imgEl = document.getElementById("funnyImg");
+  const noBtn = document.getElementById("noBtn");
+
+  noBtn.addEventListener("touchstart", moveNo);
+  noBtn.addEventListener("mouseover", moveNo);
+
+  function moveNo() {
+    const area = document.querySelector(".buttons");
+    const maxX = area.offsetWidth - noBtn.offsetWidth;
+    const maxY = area.offsetHeight - noBtn.offsetHeight;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+    noBtn.style.right = "auto";
+  }
+
+  function nextQuestion() {
+    // reset NO button
+    noBtn.style.right = "0";
+    noBtn.style.left = "auto";
+    noBtn.style.top = "0";
+
+    if (index < questions.length) {
+      qEl.innerText = questions[index].q;
+      imgEl.src = questions[index].img;
+      index++;
+    } else {
+      document.body.innerHTML = `
+        <div class="box">
+          <h2>😍 I KNEW IT! 😍</h2>
+          <img src="images/IMG-20250915-WA0217.jpg">
+          <p>You had zero escape routes ❤️</p>
+          <p>Now you are officially mine 😏</p>
+        </div>
+      `;
+    }
+  }
+</script>
+
 </body>
 </html>
