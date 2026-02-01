@@ -82,6 +82,13 @@
   object-fit: contain; /* IMPORTANT */
   border-radius: 14px;
 }
+.result-img {
+  width: 100%;
+  max-height: 240px;        /* adjust if needed */
+  object-fit: contain;     /* FIT image inside */
+  border-radius: 14px;
+  background: #000;        /* nice padding for portrait images */
+}
 
 </style>
 </head>
@@ -152,7 +159,7 @@
       document.body.innerHTML = `
         <div class="box">
           <h2>😍 I KNEW IT! 😍</h2>
-          <img src="images/IMG-20250915-WA0217.jpg">
+          <img src="images/IMG-20250915-WA0217.jpg" class="result-img">
           <p>You had zero escape routes ❤️</p>
           <p>Now you are officially mine 😏</p>
         </div>
@@ -163,4 +170,5 @@
 
 </body>
 </html>
+
 
