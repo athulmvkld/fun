@@ -2,176 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Important Questions ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Us ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-  * {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #b14a6f, #ff8ccf);
-    font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    padding: env(safe-area-inset-top)
-             env(safe-area-inset-right)
-             env(safe-area-inset-bottom)
-             env(safe-area-inset-left);
-  }
-
-  .box {
-    width: 92vw;
-    max-width: 380px;
-    background: rgba(0,0,0,0.35);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-  }
-
-  h2 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-  }
-
-  img {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: 14px;
-    margin-bottom: 16px;
-  }
-
-  .buttons {
-    position: relative;
-    height: 64px;
-  }
-
-  button {
-    font-size: 1rem;
-    padding: 14px 22px;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-  }
-
-  .yes {
-    background: #00ff9c;
-    color: #000;
-    position: absolute;
-    left: 0;
-  }
-
-  .no {
-    background: #ff3b3b;
-    color: #fff;
-    position: absolute;
-    right: 0;
-  }
-      img {
-  width: 100%;
-  max-height: 220px;
-  object-fit: contain; /* IMPORTANT */
-  border-radius: 14px;
-}
-.result-img {
-  width: 100%;
-  max-height: 240px;        /* adjust if needed */
-  object-fit: contain;     /* FIT image inside */
-  border-radius: 14px;
-  background: #000;        /* nice padding for portrait images */
-}
-
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Poppins', sans-serif; background: #0f172a; color: #fff; text-align: center; }
+.container { max-width: 430px; margin: auto; min-height: 100vh; padding: 20px; }
+.card { margin: 16px 0; border-radius: 20px; overflow: hidden; background: #111827; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: none; animation: fadeUp 0.8s ease; }
+.card img { width: 100%; height: 220px; object-fit: cover; }
+.card-content { padding: 18px; }
+.title { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; }
+.quote { font-size: 15px; line-height: 1.6; opacity: 0.9; }
+button { background: #2563eb; color: #fff; border: none; padding: 12px 20px; margin: 5px; border-radius: 8px; cursor: pointer; font-size: 16px; transition: background 0.3s; }
+button:hover { background: #1e40af; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
-
 <body>
 
-<div class="box">
-  <h2 id="question">Do you love me? ❤️</h2>
-  <img id="funnyImg"
-       src="https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif">
-
-  <div class="buttons">
-    <button class="yes" onclick="nextQuestion()">YES 😘</button>
-    <button class="no" id="noBtn">NO 🙄</button>
+<div class="container">
+  <h1>For Us ❤️</h1>
+  <div>
+    <button onclick="showQuote('chippy')">Chippy ❤️</button>
+    <button onclick="showQuote('athul')">Athul ✨</button>
+    <button onclick="showQuote('us')">For Us 💍</button>
   </div>
+
+  <div class="card" id="card">
+    <img id="card-img" src="" alt="Image">
+    <div class="card-content">
+      <div class="title" id="card-title"></div>
+      <div class="quote" id="card-quote"></div>
+    </div>
+  </div>
+
+  <div class="footer">Powered with ❤️ & Faith</div>
 </div>
 
 <script>
-  const questions = [
-    { q: "Are you monna? 😌", img: "https://media.giphy.com/media/xUA7aM09ByyR1w5YWc/giphy.gif" },
-    { q: "Do you love me? ❤️", img: "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif" },
-    { q: "Am I your comfort person? 🤍", img: "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" },
-    { q: "Do you love DRD?? 😌", img: "https://media.giphy.com/media/xUA7aM09ByyR1w5YWc/giphy.gif" },
-    { q: "Do I make your bad days better? 🌈", img: "https://media.giphy.com/media/26xBIygOcC3bAWg7S/giphy.gif" },
-    { q: "Will you choose me every day? 💍", img: "https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" },
+const images = [
+  "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600",
+  "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600",
+  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600",
+  "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=600",
+  "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=600"
+];
 
-    { q: "Am I cuter than your mom? 😌", img: "https://media.giphy.com/media/xUA7aM09ByyR1w5YWc/giphy.gif" },
-    { q: "Can I take rest? After marriage, you will earn money for me.? 😜", img: "https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif" },
+const fallbackQuotes = {
+  chippy: "You are altogether beautiful, my love; there is no flaw in you. — Song of Songs 4:7",
+  athul: "The Lord is my strength and my shield; my heart trusts in Him. — Psalm 28:7",
+  us: "Above all, love each other deeply, because love covers over a multitude of sins. — 1 Peter 4:8"
+};
 
-    { q: "Do I give you butterflies… and more? 😏🔥", img: "https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif" },
-    { q: "Will you give me something special in February? 😘", img: "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif" },
-    { q: "Do I turn you on without trying? 🔥", img: "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif" },
-    { q: "Do you enjoy it when I do my favorite thing to you? 😈", img: "https://media.giphy.com/media/l0MYyda8kKQ7G9v2w/giphy.gif" },
-    { q: "Are you officially addicted to me? 😏💋", img: "images/1741524163824.jpg"  }
-  ];
+function pickImage() {
+  const index = Math.floor(Math.random() * images.length);
+  return images[index];
+}
 
-  let index = 0;
-  const qEl = document.getElementById("question");
-  const imgEl = document.getElementById("funnyImg");
-  const noBtn = document.getElementById("noBtn");
-
-  noBtn.addEventListener("touchstart", moveNo);
-  noBtn.addEventListener("mouseover", moveNo);
-
-  function moveNo() {
-    const area = document.querySelector(".buttons");
-    const maxX = area.offsetWidth - noBtn.offsetWidth;
-    const maxY = area.offsetHeight - noBtn.offsetHeight;
-
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
-    noBtn.style.right = "auto";
+async function fetchVerse() {
+  try {
+    const res = await fetch("https://labs.bible.org/api/?passage=random&type=json");
+    const data = await res.json();
+    return `${data[0].text} — ${data[0].bookname} ${data[0].chapter}:${data[0].verse}`;
+  } catch {
+    return null;
   }
+}
 
-  function nextQuestion() {
-    // reset NO button
-    noBtn.style.right = "0";
-    noBtn.style.left = "auto";
-    noBtn.style.top = "0";
+async function showQuote(type) {
+  const quote = await fetchVerse() || fallbackQuotes[type];
 
-    if (index < questions.length) {
-      qEl.innerText = questions[index].q;
-      imgEl.src = questions[index].img;
-      index++;
-    } else {
-      document.body.innerHTML = `
-        <div class="box">
-          <h2>😍 I KNEW IT! 😍</h2>
-          <img src="https://github.com/athulmvkld/fun/blob/main/images/IMG-20250915-WA0217.jpg" class="result-img">
-          <p>You had zero escape routes ❤️</p>
-          <p>Now you are officially mine 😏</p>
-        </div>
-      `;
-    }
-  }
+  document.getElementById('card-img').src = pickImage();
+  document.getElementById('card-title').innerText = type === 'chippy' ? 'Chippy ❤️' : type === 'athul' ? 'Athul ✨' : 'For Us 💍';
+  document.getElementById('card-quote').innerText = quote;
+
+  document.getElementById('card').style.display = 'block';
+}
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
