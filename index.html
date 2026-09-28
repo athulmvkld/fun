@@ -72,7 +72,6 @@ async function showQuote(type) {
   const quote = await fetchVerse() || fallbackQuotes[type];
 
   document.getElementById('card-img').src = pickImage();
-  document.getElementById('card-title').innerText = type === 'athul' ? '✨';
   document.getElementById('card-quote').innerText = quote;
 
   document.getElementById('card').style.display = 'block';
