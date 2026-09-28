@@ -37,7 +37,7 @@ button:hover { background: #1e40af; }
     </div>
   </div>
 
-  <div class="footer">Powered with ❤️ & Faith</div>
+  <div class="footer">Powered with Faith</div>
 </div>
 
 <script>
@@ -72,7 +72,7 @@ async function showQuote(type) {
   const quote = await fetchVerse() || fallbackQuotes[type];
 
   document.getElementById('card-img').src = pickImage();
-  document.getElementById('card-title').innerText = type === 'chippy' ? 'Chippy ❤️' : type === 'athul' ? 'Athul ✨' : 'For Us 💍';
+  document.getElementById('card-title').innerText = type === 'athul' ? '✨';
   document.getElementById('card-quote').innerText = quote;
 
   document.getElementById('card').style.display = 'block';
